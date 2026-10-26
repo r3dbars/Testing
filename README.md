@@ -9,9 +9,17 @@ fails before the fix and passes after.
 
 ## Setup
 
+Install dependencies and run the app through its source entry file:
+
 ```sh
-npm install
-npm start
+bun install
+bun run src/index.ts
+```
+
+Optionally, pass a coupon code:
+
+```sh
+bun run src/index.ts --coupon SAVE10
 ```
 
 ## Checks
