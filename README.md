@@ -18,6 +18,9 @@ npm start
 
 ```sh
 bun run typecheck
+# Runs the TypeScript compiler in no-emit mode.
 bun run test
+# Runs the Bun test runner.
 bun run build
+# Bundles the entry file to the dist output directory for the Bun target.
 ```
