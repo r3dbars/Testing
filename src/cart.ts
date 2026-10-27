@@ -27,7 +27,22 @@ export function subtotal(items: LineItem[]): number {
 }
 
 export function itemCount(items: LineItem[]): number {
-  return items.length;
+  return items.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+if (import.meta.main) {
+  const mugs: LineItem = { sku: "mug", name: "Mug", priceCents: 1000, quantity: 2 };
+  const sticker: LineItem = { sku: "sticker", name: "Sticker", priceCents: 100, quantity: 1 };
+  for (const [items, expected] of [
+    [[mugs, sticker], 3],
+    [[mugs], 2],
+    [[], 0],
+  ] as [LineItem[], number][]) {
+    const actual = itemCount(items);
+    if (actual !== expected) {
+      throw new Error(`itemCount: expected ${expected}, got ${actual}`);
+    }
+  }
 }
 
 export function discount(subtotalCents: number, coupon?: Coupon): number {
