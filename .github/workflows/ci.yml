@@ -19,5 +19,7 @@ jobs:
       - run: bun run typecheck
       - run: bun run test
       - run: bun run build
+      - name: Prove the README gate catches silent coupon regressions
+        run: bun test/readme-regression.ts
       - name: Execute README examples and verify coupon behavior
-        run: bun scripts/readme-examples.ts
+        run: bun test/readme-examples.ts

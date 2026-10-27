@@ -39,6 +39,8 @@ for (const command of new Set(commands)) {
     const coupon = argv.find(arg => Object.hasOwn(COUPONS, arg));
     const baseline = run([process.execPath, "src/index.ts"]);
     const expected = coupon ? run([process.execPath, "src/index.ts", coupon]) : baseline;
+    assert.equal(run([process.execPath, "dist/index.js", ...(coupon ? [coupon] : [])]), expected,
+      "Built CLI must agree with the source example");
     assert.equal(output, expected, `${command} did not apply its advertised coupon`);
     assert.match(output, /^\d+ items, total \$\d+\.\d{2}$/, "Example must print a receipt");
     if (coupon) assert.notEqual(output, baseline, `${command} silently ignored ${coupon}`);
