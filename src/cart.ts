@@ -38,7 +38,7 @@ export function discount(subtotalCents: number, coupon?: Coupon): number {
 
 export function shipping(afterDiscountCents: number): number {
   if (afterDiscountCents === 0) return 0;
-  return afterDiscountCents > FREE_SHIPPING_CENTS ? 0 : SHIPPING_CENTS;
+  return afterDiscountCents >= FREE_SHIPPING_CENTS ? 0 : SHIPPING_CENTS;
 }
 
 export function total(items: LineItem[], couponCode?: string): number {
