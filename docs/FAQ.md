@@ -11,3 +11,5 @@ TODO
 ## Where do the coupon codes live?
 
 In `src/cart.ts`, in the `COUPONS` table.
+
+**When is shipping free?** Orders over $50.00 ship free. The threshold lives as `FREE_SHIPPING_CENTS` in `src/cart.ts`.
