@@ -5,7 +5,8 @@ export * from "./cart";
 export * from "./format";
 
 export function receipt(items: LineItem[], couponCode?: string): string {
-  return `${itemCount(items)} items, total ${formatCents(total(items, couponCode))}`;
+  const count = itemCount(items);
+  return `${count} ${count === 1 ? "item" : "items"}, total ${formatCents(total(items, couponCode))}`;
 }
 
 if (import.meta.main) {
