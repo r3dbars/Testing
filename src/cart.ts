@@ -27,18 +27,18 @@ export function subtotal(items: LineItem[]): number {
 }
 
 export function itemCount(items: LineItem[]): number {
-  return items.length;
+  return items.reduce((sum, item) => sum + item.quantity, 0);
 }
 
 export function discount(subtotalCents: number, coupon?: Coupon): number {
   if (!coupon) return 0;
   if (coupon.kind === "fixed") return Math.min(coupon.amount, subtotalCents);
-  return Math.min(coupon.amount, subtotalCents);
+  return Math.min(Math.round(subtotalCents * coupon.amount / 100), subtotalCents);
 }
 
 export function shipping(afterDiscountCents: number): number {
   if (afterDiscountCents === 0) return 0;
-  return afterDiscountCents > FREE_SHIPPING_CENTS ? 0 : SHIPPING_CENTS;
+  return afterDiscountCents >= FREE_SHIPPING_CENTS ? 0 : SHIPPING_CENTS;
 }
 
 export function total(items: LineItem[], couponCode?: string): number {
