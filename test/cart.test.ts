@@ -29,6 +29,13 @@ describe("cart", () => {
     expect(discount(3950, { code: "SAVE10", kind: "percent", amount: 10 })).toBe(395);
     expect(total([mug, sticker], "SAVE10")).toBe(4154);
   });
+  it("normalizes coupon case and surrounding whitespace", () => {
+    const expected = total([mug, sticker], "SAVE10");
+    expect(expected).toBe(4154);
+    for (const code of ["save10", " SAVE10 ", " save10 "]) {
+      expect(total([mug, sticker], code)).toBe(expected);
+    }
+  });
   it("ships orders at the threshold free", () => {
     expect(shipping(4999)).toBe(599);
     expect(shipping(5000)).toBe(0);
