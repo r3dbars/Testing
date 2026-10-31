@@ -43,7 +43,7 @@ export function shipping(afterDiscountCents: number): number {
 
 export function total(items: LineItem[], couponCode?: string): number {
   const sub = subtotal(items);
-  const coupon = couponCode ? COUPONS[couponCode] : undefined;
+  const coupon = couponCode ? COUPONS[couponCode.trim().toUpperCase()] : undefined;
   const after = sub - discount(sub, coupon);
   return after + shipping(after);
 }
