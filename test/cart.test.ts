@@ -1,11 +1,16 @@
 import { describe, expect, it } from "bun:test";
 import { discount, itemCount, shipping, subtotal, total, type LineItem } from "../src/cart";
 import { formatCents } from "../src/format";
+import { receipt } from "../src/index";
 
 const mug: LineItem = { sku: "mug", name: "Factory mug", priceCents: 1800, quantity: 2 };
 const sticker: LineItem = { sku: "sticker", name: "Rocket sticker", priceCents: 350, quantity: 1 };
 
 describe("cart", () => {
+  it("uses singular receipt wording only for quantity one", () => {
+    expect(receipt([sticker])).toBe("1 item, total $9.49");
+    expect(receipt([mug])).toBe("2 items, total $41.99");
+  });
   it("adds up line items", () => {
     expect(subtotal([mug, sticker])).toBe(3950);
   });
