@@ -24,3 +24,7 @@ bun run test
 bun run build
 # Bundles the entry file to the dist output directory for the Bun target.
 ```
+
+## License
+
+This project is MIT licensed.
