@@ -13,3 +13,7 @@ Add items to a cart, apply a coupon, and you receive a one-line receipt with the
 - **FIVEOFF** — 5 dollars off
 
 Shipping rules live in [the shipping page](SHIPING.md).
+
+## Returns
+
+Unopened items can be returned within 30 days for a full refund.
